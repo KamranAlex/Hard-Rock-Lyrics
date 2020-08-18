@@ -33,48 +33,48 @@ function showData(results) {
   fancyOutput = "";
   for (let i = 0; i < 10; i++) {
     song = results.data[i];
+
+    //Inject Search results to DOM...
     simpleOutput += `<p class='author lead'>
-      <strong>${song.title}</strong> - Album by <span class='artist-name'> ${
+        <strong style="font-size: larger">${
+          song.title
+        }</strong> - Album by  <span class='artist-name'> ${
       song.artist.name
-    }</span>
-       
-      <button class='btn btn-success get-lyrics' data-title="${
-        song.title
-      }" data-artist="${song.artist.name}" id="${
+    }  </span>
+        
+        <button class='btn btn-success get-lyrics' data-title="${
+          song.title
+        }" data-artist="${song.artist.name}" id="${
       "get-lyrics-" + i
     }">Get Lyrics</button>
-     </p>`;
+      </p>`;
 
     fancyOutput += `<div class="single-result row align-items-center my-3 p-3">
-            <div class="col-md-2">
-              <img src="${song.album.cover_small}" alt="" id="album-cover" />
-            </div>
+              <div class="col-md-2">
+                <img src="${song.album.cover_small}" alt="" id="album-cover" />
+              </div>
 
-            <div class="col-md-7">
-              <h3 class="lyrics-name">${song.title}</h3>
-              <p class="author lead">Album by <span>${
-                song.artist.name
-              }</span></p>
-            </div>
+              <div class="col-md-7">
+                <h3 class="lyrics-name">${song.title}</h3>
+                <p class="author lead">Album by <span style="color:yellow">${
+                  song.artist.name
+                }</span></p>
+              </div>
 
-            <div class="col-md-3 text-md-right text-center">
-               <button class='btn btn-success get-lyrics' data-title="${
-                 song.title
-               }" data-artist="${song.artist.name}" id="${
+              <div class="col-md-3 text-md-right text-center">
+                <button class='btn btn-success get-lyrics' data-title="${
+                  song.title
+                }" data-artist="${song.artist.name}" id="${
       "get-fancy-lyrics-" + i
     }">Get Lyrics</button>
-            </div>
-            <div
-            class="single-fancy-lyrics text-center"
-            id="fancy-lyrics"
-            style="padding-left: 120px; padding-top: 50px;"
-          ></div>
-            </div>`;
+              
+              </div>
+              </div>`;
   }
   simpleResults.innerHTML = simpleOutput;
   facnyResults.innerHTML = fancyOutput;
 
-  //Activate Get Lyrics Button...
+  //Activate Get Lyrics Buttons...
   const getLyricsBtn = document.getElementsByClassName("get-lyrics");
   for (let j = 0; j < getLyricsBtn.length; j++) {
     getLyricsBtn[j].addEventListener("click", function () {
@@ -96,22 +96,22 @@ function getSongLyrics(title, artist) {
       if (getLyrics == undefined) {
         getLyrics = `<span style="color:red; font-size:15px">Sorry, Lyrics couldn't found..!!!</span>`;
       }
-
+      //Inject the lyrics to DOM...
       const singleLyrics = document.getElementById("single-lyrics-simple");
       singleLyrics.innerHTML = `<h3 class="text-success mb-4"><strong>${title}</strong> - <span style="color:yellow; font-size:20px">${artist}</span></h3>
-          <pre class="lyric text-white">
-            ${getLyrics} 
-                </pre>`;
+            <pre class="lyric text-white">
+              ${getLyrics} 
+                  </pre>`;
 
       const fancyLyrics = document.getElementById("fancy-lyrics");
       fancyLyrics.innerHTML = `<h3 class="text-success mb-4"><strong>${title}</strong> - <span style="color:yellow; font-size:20px">${artist}</span></h3>
-          <pre class="lyric text-white">
-            ${getLyrics} 
-                </pre>`;
+            <pre class="lyric text-white">
+              ${getLyrics}
+                  </pre>`;
     });
 }
 
-//Toggle Buttons event Handler..
+//Toggle [Simple <=> Fancy] Buttons event Handler...
 showFancyBtn.addEventListener("click", function () {
   document.getElementById("fancy-result").style.display = "block";
   document.getElementById("simple-results").style.display = "none";
