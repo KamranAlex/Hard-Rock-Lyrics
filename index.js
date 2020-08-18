@@ -1,6 +1,9 @@
 const searchBox = document.getElementById("search-box");
 const searchButton = document.getElementById("search-btn");
 const simpleResults = document.getElementById("simple-results");
+const facnyResults = document.getElementById("fancy-result");
+const showFancyBtn = document.getElementById("show-fancy");
+const showSimpleBtn = document.getElementById("show-simple");
 
 const apiLink = "https://api.lyrics.ovh/suggest/";
 
@@ -11,6 +14,9 @@ searchButton.addEventListener("click", function () {
     alert("Please Type a Song or Artist Name !!!");
   } else {
     searchedSongs(searchValue);
+    setTimeout(() => {
+      document.getElementById("show-fancy").style.display = "block";
+    }, 2500);
   }
 });
 
@@ -23,10 +29,11 @@ function searchedSongs(searchData) {
 
 // Show the Searched Results..
 function showData(results) {
-  output = "";
+  simpleOutput = "";
+  fancyOutput = "";
   for (let i = 0; i < 10; i++) {
     song = results.data[i];
-    output += `<p class='author lead'>
+    simpleOutput += `<p class='author lead'>
       <strong>${song.title}</strong> - Album by <span class='artist-name'> ${
       song.artist.name
     }</span>
@@ -37,8 +44,35 @@ function showData(results) {
       "get-lyrics-" + i
     }">Get Lyrics</button>
      </p>`;
+
+    fancyOutput += `<div class="single-result row align-items-center my-3 p-3">
+            <div class="col-md-2">
+              <img src="${song.album.cover_small}" alt="" id="album-cover" />
+            </div>
+
+            <div class="col-md-7">
+              <h3 class="lyrics-name">${song.title}</h3>
+              <p class="author lead">Album by <span>${
+                song.artist.name
+              }</span></p>
+            </div>
+
+            <div class="col-md-3 text-md-right text-center">
+               <button class='btn btn-success get-lyrics' data-title="${
+                 song.title
+               }" data-artist="${song.artist.name}" id="${
+      "get-fancy-lyrics-" + i
+    }">Get Lyrics</button>
+            </div>
+            <div
+            class="single-fancy-lyrics text-center"
+            id="fancy-lyrics"
+            style="padding-left: 120px; padding-top: 50px;"
+          ></div>
+            </div>`;
   }
-  simpleResults.innerHTML = output;
+  simpleResults.innerHTML = simpleOutput;
+  facnyResults.innerHTML = fancyOutput;
 
   //Activate Get Lyrics Button...
   const getLyricsBtn = document.getElementsByClassName("get-lyrics");
@@ -60,7 +94,7 @@ function getSongLyrics(title, artist) {
       let getLyrics = data.lyrics;
 
       if (getLyrics == undefined) {
-        getLyrics = `<span style="color:red; font-size:20px">Sorry, Lyrics couldn't found..!!!</span>`;
+        getLyrics = `<span style="color:red; font-size:15px">Sorry, Lyrics couldn't found..!!!</span>`;
       }
 
       const singleLyrics = document.getElementById("single-lyrics-simple");
@@ -68,5 +102,30 @@ function getSongLyrics(title, artist) {
           <pre class="lyric text-white">
             ${getLyrics} 
                 </pre>`;
+
+      const fancyLyrics = document.getElementById("fancy-lyrics");
+      fancyLyrics.innerHTML = `<h3 class="text-success mb-4"><strong>${title}</strong> - <span style="color:yellow; font-size:20px">${artist}</span></h3>
+          <pre class="lyric text-white">
+            ${getLyrics} 
+                </pre>`;
     });
 }
+
+//Toggle Buttons event Handler..
+showFancyBtn.addEventListener("click", function () {
+  document.getElementById("fancy-result").style.display = "block";
+  document.getElementById("simple-results").style.display = "none";
+  document.getElementById("fancy-lyrics").style.display = "block";
+  document.getElementById("single-lyrics-simple").style.display = "none";
+  document.getElementById("show-simple").style.display = "block";
+  document.getElementById("show-fancy").style.display = "none";
+});
+
+showSimpleBtn.addEventListener("click", function () {
+  document.getElementById("fancy-result").style.display = "none";
+  document.getElementById("simple-results").style.display = "block";
+  document.getElementById("fancy-lyrics").style.display = "none";
+  document.getElementById("single-lyrics-simple").style.display = "block";
+  document.getElementById("show-simple").style.display = "none";
+  document.getElementById("show-fancy").style.display = "block";
+});

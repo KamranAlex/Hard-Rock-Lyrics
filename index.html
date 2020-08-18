@@ -83,60 +83,32 @@
 
         <!-- === Simple results === -->
         <div class="d-flex justify-content-center">
-          <div class="simple-results" id="simple-results"></div>
+          <div class="simple-results" id="simple-results">
+            <!-- Serach Result will be shown here -->
+          </div>
         </div>
 
         <!-- Single Lyrics -->
         <div class="single-lyrics text-center" id="single-lyrics-simple">
           <button class="btn go-back">&lsaquo;</button>
+          <!-- lyrics will injected here dynamically -->
         </div>
-        <!-- === Fancy results === -->
-        <div class="search-result col-md-8 mx-auto py-4">
-          <!-- single result -->
-          <div class="single-result row align-items-center my-3 p-3">
-            <div class="col-md-9">
-              <h3 class="lyrics-name">Purple Noon</h3>
-              <p class="author lead">Album by <span>Washed Out</span></p>
-            </div>
-            <div class="col-md-3 text-md-right text-center">
-              <button class="btn btn-success">Get Lyrics</button>
-            </div>
-          </div>
-          <!-- ./ single result -->
 
-          <!-- single result -->
-          <div class="single-result row align-items-center my-3 p-3">
-            <div class="col-md-9">
-              <h3 class="lyrics-name">Purple Noon</h3>
-              <p class="author lead">Album by <span>Washed Out</span></p>
-            </div>
-            <div class="col-md-3 text-md-right text-center">
-              <button class="btn btn-success">Get Lyrics</button>
-            </div>
-          </div>
-          <!-- ./ single result -->
-          <!-- single result -->
-          <div class="single-result row align-items-center my-3 p-3">
-            <div class="col-md-9">
-              <h3 class="lyrics-name">Purple Noon</h3>
-              <p class="author lead">Album by <span>Washed Out</span></p>
-            </div>
-            <div class="col-md-3 text-md-right text-center">
-              <button class="btn btn-success">Get Lyrics</button>
-            </div>
-          </div>
-          <!-- ./ single result -->
-          <!-- single result -->
-          <div class="single-result row align-items-center my-3 p-3">
-            <div class="col-md-9">
-              <h3 class="lyrics-name">Purple Noon</h3>
-              <p class="author lead">Album by <span>Washed Out</span></p>
-            </div>
-            <div class="col-md-3 text-md-right text-center">
-              <button class="btn btn-success">Get Lyrics</button>
-            </div>
-          </div>
-          <!-- ./ single result -->
+        <!-- === Fancy results === -->
+        <div class="search-result col-md-8 mx-auto py-4" id="fancy-result">
+          <!-- Fancy Result here -->
+
+          <!-- Fancy Lyrics here -->
+        </div>
+
+        <!-- === Toggle Simple & Fancy Result  === -->
+        <div class="toggle-types">
+          <button class="btn btn-success show-fancy" id="show-fancy">
+            Show Fancy Result
+          </button>
+          <button class="btn btn-success show-simple" id="show-simple">
+            Show Simple Result
+          </button>
         </div>
       </main>
     </div>

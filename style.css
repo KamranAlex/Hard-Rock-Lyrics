@@ -38,6 +38,13 @@ body {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
 }
+.single-fancy-result {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+}
+/* .single-fancy-lyrics {
+  display: none;
+} */
 .simple-results {
   margin: 20px;
   padding: 20px;
@@ -46,7 +53,21 @@ body {
   font-weight: 400;
   color: yellow;
 }
+
 .get-lyrics {
   position: relative;
   float: right;
+}
+#fancy-result {
+  display: none;
+}
+.toggle-types {
+  display: flex;
+  justify-content: center;
+}
+.show-simple {
+  display: none;
+}
+.show-fancy {
+  display: none;
 }
